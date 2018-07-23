@@ -1,9 +1,23 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+const router = express.Router();
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const port = process.env.PORT || 3000;
 
-var db = require('./db'); 
+// define routes
+const indexRouter = require('./routes/index');
+const clientsRouter = require('./routes/clients');
+// get routes
+app.use('/clients', clientsRouter);
+app.use('/', indexRouter);
+// middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-var UserController = require('./UserController');
-app.use('/users', UserController);
+// set the server to listen on port 3000
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 module.exports = app;
