@@ -17,7 +17,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon --watch node-api app.js",
+    "dev": "SET NODE_ENV=dev && SET MONGO_TEST='mongodb://node-api-user:password01@ds247191.mlab.com:47191/node-api-test-clients' && nodemon --watch **/*.js app.js",
     "lint": "eslint **/*.js"
   },
   "devDependencies": {
