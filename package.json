@@ -17,10 +17,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "SET NODE_ENV=dev && SET MONGO_TEST='mongodb://node-api-user:password01@ds247191.mlab.com:47191/node-api-test-clients' && nodemon --watch **/*.js app.js",
+    "dev": "SET NODE_ENV=dev && SET MONGO_TEST_URL='mongodb://node-api-user:password01@ds247191.mlab.com:47191/node-api-test-clients' && nodemon --watch **/*.js app.js",
     "lint": "eslint **/*.js"
   },
   "devDependencies": {
+    "dotenv": "^6.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0"

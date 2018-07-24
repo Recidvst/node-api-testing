@@ -26,7 +26,7 @@ app.use('/', indexRouter);
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
     console.log(process.env.NODE_ENV);
-    console.log(process.env.MONGO_TEST);
+    console.log(process.env.MONGO_TEST_URL);
 });
 
 module.exports = app;
