@@ -3,7 +3,7 @@ mongoose.Promise = global.Promise; // allow Promise use
 // define db endpoint
 var mongoURL = 'mongodb://node-api-user:password01@ds247191.mlab.com:47191/node-api-test-clients';
 if ( process.env.NODE_ENV === 'production' ) {
-    mongoURL = 'process.env.MONGO_LIVE;'
+    mongoURL = process.env.MONGO_LIVE;
 }
 // connect db
 mongoose.connect(mongoURL, { useNewUrlParser: true });
