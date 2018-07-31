@@ -17,7 +17,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
+    "start": "MONGO_LIVE='mongodb://pixel_pixel_db_user:F9LPYN/QgfvrhgtzqD@ds261521.mlab.com:61521/pixel_pixel_clients' node app.js",
     "dev": "nodemon --watch app.js",
     "lint": "eslint **/*.js"
   },
