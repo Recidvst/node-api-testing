@@ -1,10 +1,11 @@
 const express = require('express');
+var cors = require('cors')
 const router = express.Router();
+const bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+const ClientSchema = require('../models/clientsModel');
 
-const Client = require('../models/clientsModel')
-
-router.get('/', (request, response) => {
+router.get('/', (request, response, next) => {
     response.send('hello world');
 });
 

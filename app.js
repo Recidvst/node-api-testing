@@ -1,18 +1,20 @@
 // get packages
 const express = require('express');
+var cors = require('cors')
 const db = require('./db');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 // declare app
 const app = express();
-const router = express.Router();
-const port = process.env.PORT || 3000;
+const router = express.Router({mergeParams: true});
+const port = process.env.PORT || 8000;
 
 // middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors())
 
 // define routes
 const indexRouter = require('./routes/index');
@@ -25,8 +27,6 @@ app.use('/', indexRouter);
 // set the server to listen on port 3000
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
-    console.log(process.env.NODE_ENV);
-    console.log(process.env.MONGO_TEST_URL);
 });
 
 module.exports = app;

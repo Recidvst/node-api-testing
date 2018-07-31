@@ -16,8 +16,10 @@ var clientSchema = new Schema({
         type: String,
         Required: 'Add a url'
     },
-    arrayTest: {
-        type: Array
+    retained: {
+        type: Boolean,
+        required: 'Is the client retained?',
+        default: false
     }
 })
 
