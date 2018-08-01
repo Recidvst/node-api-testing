@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.Promise = global.Promise; // allow Promise use
 // define db endpoint
-var mongoURL = 'mongodb://node-api-user:password01@ds247191.mlab.com:47191/node-api-test-clients';
+let mongoURL = 'mongodb://node-api-user:password01@ds247191.mlab.com:47191/node-api-test-clients';
 if ( process.env.NODE_ENV === 'production' ) {
     mongoURL = process.env.MONGO_LIVE;
 }

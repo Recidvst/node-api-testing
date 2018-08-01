@@ -1,6 +1,7 @@
 // get packages
 const express = require('express');
-var cors = require('cors')
+const pretty = require('express-prettify');
+const cors = require('cors')
 const db = require('./db');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -12,9 +13,10 @@ const port = process.env.PORT || 8000;
 
 // middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors())
+app.use(cors());
+app.use(pretty({ always: true, spaces: 2 }));
 
 // define routes
 const indexRouter = require('./routes/index');

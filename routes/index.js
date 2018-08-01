@@ -1,9 +1,6 @@
 const express = require('express');
-var cors = require('cors')
-const router = express.Router();
-const bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-const ClientSchema = require('../models/clientsModel');
+const router = express.Router({mergeParams: true});
+const mongoose = require('mongoose');
 
 router.get('/', (request, response, next) => {
     response.send('hello world');

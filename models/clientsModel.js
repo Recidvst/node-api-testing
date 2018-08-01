@@ -1,27 +1,51 @@
 // get mongoose to work with mongodb
 const mongoose = require('mongoose');
 // define a schema
-var Schema = mongoose.Schema;
-var clientSchema = new Schema({
+const Schema = mongoose.Schema;
+let clientSchema = new Schema({
     slug: {
         type: String,
-        Required: 'Add a slug'
+        required: 'Add a slug'
     },
     name: {
         type: String,
-        Required: 'Add a name',
         default: 'New Client'
     },
     url: {
         type: String,
-        Required: 'Add a url'
+        default: 'Client site url'
+    },
+    staging: {
+        type: String,
+        default: 'n/a'
+    },
+    login: {
+        type: String,
+        default: 'n/a'
+    },
+    hosting: {
+        type: String,
+        default: 'n/a'
+    },
+    hostingurl: {
+        type: String,
+        default: 'n/a'
+    },
+    siteType: {
+        type: String,
+        default: 'n/a'
     },
     retained: {
         type: Boolean,
-        required: 'Is the client retained?',
         default: false
+    },
+    retainer: {
+        type: Number,
+        default: 4
     }
-})
+}, {
+    timestamps: true
+});
 
 // export the schema as a model for use in app
-module.exports = mongoose.model('Clients', clientSchema);
+module.exports = mongoose.model('Client', clientSchema);
