@@ -51,7 +51,17 @@ router.post('/', (request, response, next) => {
 });
 
 // EDIT ONE ( PUT )
-
-
+router.put('/:client', (request, response, next) => {
+    let clientSlug = request.params.client;
+    let updatedClient = {};
+    for (let value in request.body) {
+        updatedClient[value] = request.body[value];
+    }
+    mongoose.model( 'Client' ).findOneAndUpdate( {slug:clientSlug}, updatedClient, 
+    function(err, client) {
+        if (err) response.send(err);
+        response.status(200).send(client);
+    });
+});
 
 module.exports = router;

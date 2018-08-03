@@ -3,7 +3,7 @@ const router = express.Router({mergeParams: true});
 const mongoose = require('mongoose');
 
 router.get('/', (request, response, next) => {
-    response.send('hello world');
+    response.send('Welcome to the Pixel Pixel client API');
 });
 
 module.exports = router;
