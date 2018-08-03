@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise; // allow Promise use
+// config/env
+const CONFIG = require('./config');
+
 // define db endpoint
-let mongoURL = 'mongodb://node-api-user:password01@ds247191.mlab.com:47191/node-api-test-clients';
+let mongoURL = CONFIG.MONGO_DEV;
 if ( process.env.NODE_ENV === 'production' ) {
-    mongoURL = process.env.MONGO_LIVE;
+    mongoURL = process.env.MONGO_LIVE || CONFIG.MONGO_LIVE;
 }
 // connect db
 mongoose.connect(mongoURL, { useNewUrlParser: true });

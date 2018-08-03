@@ -13,11 +13,13 @@
     "forever": "^0.15.3",
     "mongodb": "^3.1.1",
     "mongoose": "^5.2.4",
-    "nodemon": "^1.18.3"
+    "morgan": "^1.9.0",
+    "nodemon": "^1.18.3",
+    "passport": "^0.4.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "MONGO_LIVE=mongodb://pixel_pixel_db_user:F9LPYNQgfvrhgtzqD@ds261521.mlab.com:61521/pixel_pixel_clients node app.js",
+    "start": "NODE_ENV=production node app.js",
     "dev": "nodemon --watch app.js",
     "lint": "eslint **/*.js"
   },

@@ -16,3 +16,7 @@ yarn-error.log
 
 package-lock.json
 yarn-lock
+
+# config
+config.js
+.env
