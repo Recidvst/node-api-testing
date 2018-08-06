@@ -9,12 +9,12 @@ const cors = require('cors')
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 // config/env
-const CONFIG = require('./config');
+require('dotenv').config();
 
 // declare app
 const app = express();
 const router = express.Router({mergeParams: true});
-const port = process.env.PORT || CONFIG.port;
+const port = process.env.PORT || 8000;
 
 // middleware
 app.use(passport.initialize());
@@ -33,7 +33,7 @@ const clientsRouter = require('./routes/clients');
 app.use('/clients', clientsRouter);
 app.use('/', indexRouter);
 
-// set the server to listen on port 3000
+// set the server listening
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
