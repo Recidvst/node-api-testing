@@ -8,6 +8,7 @@ let mongoURL = process.env.MONGO_DEV;
 if ( process.env.NODE_ENV === 'production' ) {
     mongoURL = process.env.MONGO_LIVE;
 }
+
 // connect db
 mongoose.connect(mongoURL, { useNewUrlParser: true });
 var db = mongoose.connection;
