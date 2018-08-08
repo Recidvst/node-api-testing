@@ -14,7 +14,7 @@ require('dotenv').config();
 // declare app
 const app = express();
 const router = express.Router({mergeParams: true});
-const port = process.env.PORT || 8000;
+const port = ( process.env.NODE_ENV === 'production' ) ? process.env.PORT : 3000;
 
 // middleware
 app.use(passport.initialize());

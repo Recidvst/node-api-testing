@@ -32,6 +32,7 @@ router.delete('/:client', (request, response, next) => {
 
 // ADD ONE ( POST )
 router.post('/', (request, response, next) => {
+    console.log(request.body);
     mongoose.model( 'Client' ).create( {
         slug : request.body.slug,
         name : request.body.name,
@@ -43,8 +44,7 @@ router.post('/', (request, response, next) => {
         siteType : request.body.siteType,
         retained : request.body.retained,
         retainer : request.body.retainer,
-    }, 
-    function(err, client) {
+    }, function(err, client) {
         if (err) response.send(err);
         response.status(200).send(client);
     });
