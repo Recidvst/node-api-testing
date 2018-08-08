@@ -1,2 +1,2 @@
-# node-api-testing
-Playing around with using Node for API creation.
+# Node/Express RESTful API example.
+Playing with Node to make a basic API to get a catalogue of famous books.

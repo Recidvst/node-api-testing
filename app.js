@@ -14,7 +14,8 @@ require('dotenv').config();
 // declare app
 const app = express();
 const router = express.Router({mergeParams: true});
-const port = ( process.env.NODE_ENV === 'production' ) ? process.env.PORT : 3000;
+const port = ( process.env.NODE_ENV === 'production' ) ? process.env.PORT : 8000;
+console.log(port);
 
 // middleware
 app.use(passport.initialize());
@@ -27,15 +28,21 @@ app.use(cookieParser());
 
 // define routes
 const indexRouter = require('./routes/index');
-const clientsRouter = require('./routes/clients');
+const booksRouter = require('./routes/books');
 
 // get routes
-app.use('/clients', clientsRouter);
+app.use('/books', booksRouter);
 app.use('/', indexRouter);
 
 // set the server listening
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
+});
+
+// error handling?
+process.on('uncaughtException', function (err) {
+    console.error(err);
+    console.error(err.stack);
 });
 
 module.exports = app;
