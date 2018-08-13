@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const mongoose = require('mongoose');
 // mongoose.set('debug', true);
-const bookSchema = require('../models/booksModel');
-
+// encryption
+const jwt = require('jsonwebtoken');
+const verifyToken = require('./auth');
 
 // GET ALL ( GET )
 router.get('/', verifyToken, (request, response, next) => {
