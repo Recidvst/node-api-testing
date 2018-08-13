@@ -14,48 +14,49 @@ const validateEmail = function(email) {
 
 // CREATE USER ( POST )
 router.post('/signup', (req, res) => {
-    bcrypt.hash(req.body.password, 10, (err, hash) => {
-        // hash worked?
-        if(err) {
-            return res.status(500).json({
-             error: err + ' | password not present or badly formed'
-            });
-        }
-        else {
-            // does the email already exist?
-            User.findOne({email: req.body.email}, function(err, foundUser) {
-                if ( !foundUser ) {
+    bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+            // hash worked?
+            if(err) {
+                return res.status(500).json({
+                error: err + ' | password not present or badly formed'
+                });
+            }
+            else {
+                // does the email already exist?
+                User.findOne({email: req.body.email}, function(err, foundUser) {
+                    if ( !foundUser ) {
 
-                    if ( !validateEmail( req.body.email ) ) {
+                        if ( !validateEmail( req.body.email ) ) {
+                            res.status(500).json({
+                                error: "Please provide a valid email"
+                            });
+                        }
+                        // create
+                        mongoose.model( 'User' ).create( {
+                            _id: new mongoose.Types.ObjectId(),
+                            email: req.body.email,
+                            password: hash  
+                        }, (err, user) => {
+                            if (err) res.send(err);
+                            res.status(200).send(user);
+                        });
+
+                    }
+                    else {
                         res.status(500).json({
-                            error: "Please provide a valid email"
+                            error: "This email has already been registered"
                         });
                     }
-                    // create
-                    mongoose.model( 'User' ).create( {
-                        _id: new mongoose.Types.ObjectId(),
-                        email: req.body.email,
-                        password: hash  
-                    }, (err, user) => {
-                        if (err) res.send(err);
-                        res.status(200).send(user);
-                    });
-
-                }
-                else {
-                    res.status(500).json({
-                        error: "This email has already been registered"
-                    });
-                }
-            });
-        }
+                });
+            }
+        });
     });
  });
 
  // SIGN IN USER (POST)
  router.post('/signin', (req, res, next) => {
     User.findOne({email: req.body.email})
-    .next()
     .then( (user) => {
        bcrypt.compare(req.body.password, user.password, function(err, result) {
           if (err) {
