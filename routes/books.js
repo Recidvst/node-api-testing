@@ -6,7 +6,7 @@ const bookSchema = require('../models/booksModel');
 
 
 // GET ALL ( GET )
-router.get('/', (request, response, next) => {
+router.get('/', verifyToken, (request, response, next) => {
     mongoose.model( 'Book' ).find( {}, function(err, books) {
         if (err) response.send(err);
         response.status(200).json(books);
@@ -14,7 +14,7 @@ router.get('/', (request, response, next) => {
 });
 
 // GET ONE ( GET )
-router.get('/:book', (request, response, next) => {
+router.get('/:book', verifyToken, (request, response, next) => {
     let bookSlug = decodeURI(request.params.book);
     mongoose.model( 'Book' ).find( {slug:bookSlug}, function(err, book) {
         console.log(book);
@@ -24,7 +24,7 @@ router.get('/:book', (request, response, next) => {
 });
 
 // REMOVE ONE ( DELETE )
-router.delete('/:book', (request, response, next) => {
+router.delete('/:book', verifyToken, (request, response, next) => {
     let bookSlug = decodeURI(request.params.book);
     mongoose.model( 'Book' ).findOneAndRemove( {slug:bookSlug}, function(err, book) {
         if (err) response.send(err);
@@ -33,7 +33,7 @@ router.delete('/:book', (request, response, next) => {
 });
 
 // ADD ONE ( POST )
-router.post('/', (request, response, next) => {
+router.post('/', verifyToken, (request, response, next) => {
     mongoose.model( 'Book' ).create( {
         title : request.body.title,
         slug : request.body.slug,

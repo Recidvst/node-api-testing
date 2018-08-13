@@ -28,9 +28,11 @@ app.use(cookieParser());
 // define routes
 const indexRouter = require('./routes/index');
 const booksRouter = require('./routes/books');
+const usersRouter = require('./routes/users');
 
 // get routes
 app.use('/books', booksRouter);
+app.use('/users', usersRouter);
 app.use('/', indexRouter);
 
 // set the server listening
